@@ -26,7 +26,7 @@ sudo -u sunboats env DJANGO_SETTINGS_MODULE=config.settings.prod .venv/bin/pytho
 
 ## Where to edit exhibitions
 
-Sign in at `https://sunboatsexhibitions.com/admin/`
+Sign in at `https://sunboats.online/admin/`
 
 - Next edition: **المعارض**
 - Week programme rows: inside that exhibition
@@ -37,12 +37,12 @@ Sign in at `https://sunboatsexhibitions.com/admin/`
 Apex and www should point to this server:
 
 ```
-sunboatsexhibitions.com      A   <this-server-ip>
-www.sunboatsexhibitions.com  A   <this-server-ip>
+sunboats.online      A   <this-server-ip>
+www.sunboats.online  A   <this-server-ip>
 ```
 
 Then:
 
 ```bash
-certbot --nginx -d sunboatsexhibitions.com -d www.sunboatsexhibitions.com
+certbot --nginx -d sunboats.online -d www.sunboats.online
 ```

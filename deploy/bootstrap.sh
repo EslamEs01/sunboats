@@ -21,8 +21,8 @@ if [ ! -f "$APP/.env" ]; then
   cat > "$APP/.env" <<EOF
 SECRET_KEY=$SECRET
 DEBUG=0
-ALLOWED_HOSTS=.sunboatsexhibitions.com,159.223.182.218,127.0.0.1
-CSRF_TRUSTED_ORIGINS=https://sunboatsexhibitions.com,https://www.sunboatsexhibitions.com,http://159.223.182.218
+ALLOWED_HOSTS=.sunboats.online,159.223.182.218,127.0.0.1
+CSRF_TRUSTED_ORIGINS=https://sunboats.online,https://www.sunboats.online,http://159.223.182.218
 POSTGRES_DB=sunboats
 POSTGRES_USER=sunboats
 POSTGRES_PASSWORD=$PGPASS
@@ -81,7 +81,7 @@ ufw allow 80/tcp
 ufw allow 443/tcp
 ufw --force enable
 
-certbot --nginx -d sunboatsexhibitions.com -d www.sunboatsexhibitions.com \
+certbot --nginx -d sunboats.online -d www.sunboats.online \
   --non-interactive --agree-tos -m esmaelbakr28@gmail.com --redirect || true
 
 echo "bootstrap finished"
