@@ -111,7 +111,7 @@ class Command(BaseCommand):
         settings.site_name = "Sun Boats"
         settings.tagline = "International exhibitions in Egypt"
         settings.description = (
-            "Sun Boats International Exhibitions — معارض مراكب الشمس — "
+            "Sun Boats International Exhibitions — "
             "is a seasonal gathering of artists in Egypt. Painters send a work. "
             "We review it. Selected pieces are shown during the edition week, "
             "alongside visits to Giza, the Grand Egyptian Museum, the Nile, and Minya."

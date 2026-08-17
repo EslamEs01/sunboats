@@ -240,7 +240,9 @@ class SeededSiteTests(TestCase):
         self.assertContains(login, "admin-ar.css")
         home = self._page("home")
         self.assertContains(home, "Submit your work")
+        self.assertContains(home, "International Exhibitions")
         self.assertNotContains(home, "اسم المستخدم")
+        self.assertNotContains(home, "معارض مراكب الشمس")
 
     def test_request_approve_reject(self):
         req = ExhibitionRequest.objects.create(
