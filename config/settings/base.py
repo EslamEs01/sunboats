@@ -35,6 +35,8 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
+    "apps.core.middleware.AdminArabicMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -95,6 +97,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = "en"
+LANGUAGES = [
+    ("en", "English"),
+    ("ar", "العربية"),
+]
 TIME_ZONE = "Africa/Cairo"
 USE_I18N = True
 USE_TZ = True
@@ -120,16 +126,20 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 20 * 1024 * 1024
 DATA_UPLOAD_MAX_MEMORY_SIZE = 20 * 1024 * 1024
 
 JAZZMIN_SETTINGS = {
-    "site_title": "Sun Boats",
-    "site_header": "Sun Boats",
-    "site_brand": "Sun Boats",
-    "welcome_sign": "Sun Boats International Exhibitions",
+    "site_title": "مراكب الشمس",
+    "site_header": "مراكب الشمس",
+    "site_brand": "مراكب الشمس",
+    "welcome_sign": "مرحباً بك في لوحة تحكم معارض مراكب الشمس",
     "copyright": "معارض مراكب الشمس",
+    "site_logo_classes": "img-circle",
+    "use_google_fonts_cdn": False,
+    "custom_css": "css/admin-ar.css",
+    "language_chooser": False,
     "search_model": ["exhibitions.Exhibition", "exhibitions.ExhibitionRequest"],
     "topmenu_links": [
-        {"name": "الموقع", "url": "/", "new_window": True},
-        {"model": "exhibitions.Exhibition"},
-        {"model": "exhibitions.ExhibitionRequest"},
+        {"name": "زيارة الموقع", "url": "/", "new_window": True},
+        {"name": "المعارض", "url": "admin:exhibitions_exhibition_changelist"},
+        {"name": "طلبات العرض", "url": "admin:exhibitions_exhibitionrequest_changelist"},
     ],
     "icons": {
         "core.Settings": "fas fa-cog",
@@ -144,6 +154,7 @@ JAZZMIN_SETTINGS = {
         "exhibitions",
         "works",
     ],
+    "changeform_format": "horizontal_tabs",
 }
 
 JAZZMIN_UI_TWEAKS = {
@@ -151,4 +162,8 @@ JAZZMIN_UI_TWEAKS = {
     "navbar": "navbar-white navbar-light",
     "sidebar": "sidebar-dark-secondary",
     "accent": "accent-warning",
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
 }

@@ -3,18 +3,18 @@
 {% block title %}Submit your work — Sun Boats{% endblock %}
 
 {% block content %}
-<section class="mx-auto grid max-w-6xl gap-16 px-5 py-16 lg:grid-cols-[1fr_1.1fr]">
+<section class="mx-auto grid max-w-6xl gap-16 px-5 py-16 lg:grid-cols-[0.95fr_1.05fr] md:py-20">
   <div>
     <p class="eyebrow">Open call</p>
-    <h1 class="font-display mt-3 text-5xl leading-tight">Send a work to Egypt.</h1>
-    <p class="mt-5 max-w-md text-base leading-relaxed">
+    <h1 class="font-display mt-3 text-5xl leading-[0.95] md:text-6xl">Send a work to Egypt.</h1>
+    <p class="mt-6 max-w-md text-base leading-relaxed">
       No account. One image, a title, and a few lines. We review every submission for a coming edition.
     </p>
     <p class="mt-6 text-sm">
       Direct line:
       <a class="underline underline-offset-4" href="mailto:esmaelbakr28@gmail.com">esmaelbakr28@gmail.com</a>
     </p>
-    <ol class="mt-12 space-y-6">
+    <ol class="mt-14 space-y-7">
       <li>
         <p class="font-display text-2xl">1. We receive it</p>
         <p class="mt-1 text-sm leading-relaxed text-basalt/80">Your image and notes arrive as a pending request.</p>
@@ -30,7 +30,7 @@
     </ol>
   </div>
 
-  <form method="post" enctype="multipart/form-data" class="form-stack border border-ink/10 bg-limestone/30 p-6 sm:p-8">
+  <form method="post" enctype="multipart/form-data" class="form-stack border border-ink/10 bg-limestone/30 p-6 sm:p-9">
     {% csrf_token %}
     {% for field in form %}
       <label>

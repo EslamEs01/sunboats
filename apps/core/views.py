@@ -35,5 +35,18 @@ def about(request):
 
 
 def gallery(request):
+    editions = Exhibition.objects.prefetch_related(
+        "artworks__artist",
+        "gallery_images",
+    ).order_by("-start_date")
     artworks = Artwork.objects.select_related("artist", "exhibition").order_by("-year", "title")
-    return render(request, "pages/gallery.html", {"artworks": artworks})
+    loose_works = artworks.filter(exhibition__isnull=True)
+    return render(
+        request,
+        "pages/gallery.html",
+        {
+            "editions": editions,
+            "artworks": artworks,
+            "loose_works": loose_works,
+        },
+    )

@@ -1,10 +1,10 @@
 <a href="{{ item.get_absolute_url }}" class="group block">
-  <figure class="frame">
+  <figure class="frame frame-wide">
     {% if item.image %}
       <img src="{{ item.image.url }}" alt="{{ item.title }}" loading="lazy">
     {% endif %}
     <figcaption>
-      <span class="block font-display text-xl text-ink normal-case tracking-normal">{{ item.title }}</span>
+      <span class="block font-display text-xl normal-case tracking-normal text-ink">{{ item.title }}</span>
       <span class="mt-1 block">
         {{ item.start_date|date:"j M Y" }}{% if item.end_date %} – {{ item.end_date|date:"j M Y" }}{% endif %}
         · {{ item.location }}

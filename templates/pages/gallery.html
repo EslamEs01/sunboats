@@ -3,25 +3,71 @@
 {% block title %}Gallery — Sun Boats{% endblock %}
 
 {% block content %}
-<section class="mx-auto max-w-6xl px-5 py-16">
+<section class="mx-auto max-w-6xl px-5 py-16 md:py-20">
   <p class="eyebrow">Works</p>
-  <h1 class="font-display mt-3 text-5xl">Gallery</h1>
-  <p class="mt-4 max-w-xl text-base leading-relaxed">
-    Selected works from Sun Boats editions. Not a shop — a wall from the weeks in Egypt.
+  <h1 class="font-display mt-3 max-w-3xl text-5xl leading-[0.95] md:text-7xl">Gallery</h1>
+  <p class="mt-5 max-w-xl text-base leading-relaxed">
+    Selected works and photographs from Sun Boats editions. Not a shop — a wall from the weeks in Egypt.
   </p>
-  <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-    {% for work in artworks %}
-      <figure class="frame">
-        <img src="{{ work.image.url }}" alt="{{ work.title }}" loading="lazy">
-        <figcaption>
-          {{ work.title }}
-          {% if work.artist %} — {{ work.artist.name }}{% endif %}
-          {% if work.exhibition %}<span class="block">{{ work.exhibition.title }}</span>{% endif %}
-        </figcaption>
-      </figure>
-    {% empty %}
-      <p>Works will appear here after an edition is documented.</p>
-    {% endfor %}
+</section>
+
+{% if artworks or editions %}
+  {% for edition in editions %}
+    {% if edition.artworks.all or edition.gallery_images.all %}
+      <section class="mx-auto max-w-6xl px-5 pb-20">
+        <div class="mb-8 flex flex-wrap items-end justify-between gap-4 border-b border-ink/10 pb-4">
+          <div>
+            <p class="eyebrow">{{ edition.start_date|date:"Y" }} · {{ edition.location }}</p>
+            <h2 class="font-display mt-2 text-3xl md:text-4xl">{{ edition.title }}</h2>
+          </div>
+          <a href="{{ edition.get_absolute_url }}" class="btn-line">The edition</a>
+        </div>
+        <div class="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+          {% for work in edition.artworks.all %}
+            <figure class="frame">
+              <img src="{{ work.image.url }}" alt="{{ work.title }}" loading="lazy">
+              <figcaption>
+                {{ work.title }}
+                {% if work.artist %} — {{ work.artist.name }}{% endif %}
+                {% if work.medium %}<span class="block normal-case tracking-normal text-basalt/60">{{ work.medium }}{% if work.year %}, {{ work.year }}{% endif %}</span>{% endif %}
+              </figcaption>
+            </figure>
+          {% endfor %}
+          {% for photo in edition.gallery_images.all %}
+            <figure class="frame frame-wide">
+              <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" loading="lazy">
+              {% if photo.caption %}<figcaption>{{ photo.caption }}</figcaption>{% endif %}
+            </figure>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  {% endfor %}
+
+  {% if loose_works %}
+    <section class="mx-auto max-w-6xl px-5 pb-20">
+      <h2 class="font-display text-3xl">Other works</h2>
+      <div class="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+        {% for work in loose_works %}
+          <figure class="frame">
+            <img src="{{ work.image.url }}" alt="{{ work.title }}" loading="lazy">
+            <figcaption>{{ work.title }}{% if work.artist %} — {{ work.artist.name }}{% endif %}</figcaption>
+          </figure>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+{% else %}
+  <section class="mx-auto max-w-6xl px-5 pb-24">
+    <p>Works will appear here after an edition is documented.</p>
+  </section>
+{% endif %}
+
+<section class="mx-auto max-w-6xl px-5 pb-20">
+  <div class="border border-ink/10 px-8 py-12">
+    <h2 class="font-display text-3xl">Have a work for a coming edition?</h2>
+    <p class="mt-3 max-w-lg text-sm leading-relaxed">The gallery is built from weeks that have already happened. The next hang starts on the submit page.</p>
+    <a href="{% url 'submit' %}" class="btn-accent mt-6 inline-block">Submit your work</a>
   </div>
 </section>
 {% endblock %}

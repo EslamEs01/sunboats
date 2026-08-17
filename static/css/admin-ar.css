@@ -1,0 +1,25 @@
+/* Jazzmin Arabic — self-hosted Cairo, no Google CDN */
+@font-face {
+  font-family: "Cairo";
+  src: url("../fonts/cairo.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+body,
+.wrapper,
+.main-header,
+.main-sidebar,
+.content-wrapper,
+.login-page,
+.login-box {
+  font-family: "Cairo", "Segoe UI", Tahoma, sans-serif !important;
+}
+
+.login-logo a,
+.brand-link,
+.nav-sidebar .nav-link p,
+.content-header h1 {
+  font-family: "Cairo", "Segoe UI", Tahoma, sans-serif !important;
+}

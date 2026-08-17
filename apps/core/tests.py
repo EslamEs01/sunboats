@@ -203,9 +203,23 @@ class SeededSiteTests(TestCase):
 
     def test_gallery_and_admin(self):
         gallery = self._page("gallery")
-        self._assert_clean_public(gallery, "Sun Boats")
+        self._assert_clean_public(gallery, "Sun Boats", "Gallery")
+        self.assertContains(gallery, "Limestone Hour")
+        home = self._page("home")
+        self.assertContains(home, reverse("gallery"))
+        self.assertContains(home, ">Gallery<")
         admin = self.client.get(reverse("admin:index"), follow=True)
         self.assertEqual(admin.status_code, 200)
+
+    def test_admin_interface_is_arabic(self):
+        login = self.client.get(reverse("admin:login"))
+        self.assertEqual(login.status_code, 200)
+        self.assertContains(login, "مراكب الشمس")
+        self.assertContains(login, "اسم المستخدم")
+        self.assertContains(login, "كلمة المرور")
+        home = self._page("home")
+        self.assertContains(home, "Submit your work")
+        self.assertNotContains(home, "اسم المستخدم")
 
     def test_request_approve_reject(self):
         req = ExhibitionRequest.objects.create(
