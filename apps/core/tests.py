@@ -8,7 +8,9 @@ from django.test import TestCase
 from django.urls import reverse
 from PIL import Image
 
+from apps.core.forms import ContactForm
 from apps.core.models import ContactMessage, Settings
+from apps.exhibitions.forms import ExhibitionRequestForm
 from apps.exhibitions.models import Exhibition, ExhibitionProgram, ExhibitionRequest
 from apps.works.models import Artist, Artwork
 
@@ -109,12 +111,43 @@ class SeededSiteTests(TestCase):
         )
         self.assertNotContains(response, "/events/")
         self.assertContains(response, reverse("submit"))
+        self.assertContains(response, "past")
+        self.assertNotContains(response, "ماضي")
+        self.assertNotContains(response, "قادم")
+        self.assertNotContains(response, "حالي")
 
     def test_submit_fields_and_email(self):
         response = self._page("submit")
         self._assert_clean_public(response, "esmaelbakr28@gmail.com")
         for field in ("name", "email", "phone", "country", "title", "medium", "description", "image"):
             self.assertContains(response, f'name="{field}"')
+        for label in (
+            "Name",
+            "Email",
+            "Phone",
+            "Country",
+            "Artwork title",
+            "Medium",
+            "Short description",
+            "Image",
+        ):
+            self.assertContains(response, label)
+        for arabic in ("الاسم", "البريد الإلكتروني", "الهاتف", "الدولة", "عنوان العمل", "الخامة", "صورة العمل"):
+            self.assertNotContains(response, arabic)
+        form = ExhibitionRequestForm()
+        self.assertEqual(
+            {name: form.fields[name].label for name in form.fields},
+            {
+                "name": "Name",
+                "email": "Email",
+                "phone": "Phone",
+                "country": "Country",
+                "title": "Artwork title",
+                "medium": "Medium",
+                "description": "Short description",
+                "image": "Image",
+            },
+        )
 
     def test_submit_creates_pending_request(self):
         response = self.client.post(
@@ -141,6 +174,17 @@ class SeededSiteTests(TestCase):
         response = self._page("about")
         self._assert_clean_public(response, "Ismail Bakr", "Esmael Bakr", "esmaelbakr28@gmail.com")
         self.assertContains(response, 'name="message"')
+        self.assertContains(response, "Name")
+        self.assertContains(response, "Email")
+        self.assertContains(response, "Message")
+        self.assertNotContains(response, "الاسم")
+        self.assertNotContains(response, "البريد الإلكتروني")
+        self.assertNotContains(response, "الرسالة")
+        contact = ContactForm()
+        self.assertEqual(
+            {name: contact.fields[name].label for name in contact.fields},
+            {"name": "Name", "email": "Email", "message": "Message"},
+        )
 
     def test_about_contact_persists(self):
         response = self.client.post(

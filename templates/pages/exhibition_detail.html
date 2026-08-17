@@ -26,7 +26,7 @@
       <p class="eyebrow">Edition</p>
       <p class="mt-4">{{ exhibition.location }}</p>
       <p>{{ exhibition.start_date|date:"j F Y" }}{% if exhibition.end_date %} – {{ exhibition.end_date|date:"j F Y" }}{% endif %}</p>
-      <p class="mt-2 capitalize">{{ exhibition.get_status_display }}</p>
+      <p class="mt-2 capitalize">{{ exhibition.status }}</p>
     </aside>
   </section>
 

@@ -16,6 +16,16 @@ class ExhibitionRequestForm(forms.ModelForm):
             "description",
             "image",
         )
+        labels = {
+            "name": "Name",
+            "email": "Email",
+            "phone": "Phone",
+            "country": "Country",
+            "title": "Artwork title",
+            "medium": "Medium",
+            "description": "Short description",
+            "image": "Image",
+        }
         widgets = {
             "name": forms.TextInput(attrs={"autocomplete": "name"}),
             "email": forms.EmailInput(attrs={"autocomplete": "email"}),

@@ -7,6 +7,11 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = ContactMessage
         fields = ("name", "email", "message")
+        labels = {
+            "name": "Name",
+            "email": "Email",
+            "message": "Message",
+        }
         widgets = {
             "name": forms.TextInput(attrs={"autocomplete": "name"}),
             "email": forms.EmailInput(attrs={"autocomplete": "email"}),
