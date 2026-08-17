@@ -18,11 +18,25 @@
       <p class="eyebrow">Colophon</p>
       <p class="mt-3">{{ site_settings.address|default:"Cairo, Egypt" }}</p>
       {% if site_settings.email %}
-        <a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a>
+        <a class="block" href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a>
       {% endif %}
       {% if site_settings.phone %}
-        <p>{{ site_settings.phone }}</p>
+        <a class="block" href="{{ site_settings.tel_href }}">{{ site_settings.phone }}</a>
       {% endif %}
+      {% if site_settings.whatsapp_href %}
+        <a class="block" href="{{ site_settings.whatsapp_href }}">WhatsApp</a>
+      {% endif %}
+      <p class="mt-4 flex flex-wrap gap-x-4 gap-y-1">
+        {% if site_settings.facebook %}
+          <a href="{{ site_settings.facebook }}" target="_blank" rel="noopener">Facebook</a>
+        {% endif %}
+        {% if site_settings.instagram %}
+          <a href="{{ site_settings.instagram }}" target="_blank" rel="noopener">Instagram</a>
+        {% endif %}
+        {% if site_settings.youtube %}
+          <a href="{{ site_settings.youtube }}" target="_blank" rel="noopener">YouTube</a>
+        {% endif %}
+      </p>
     </div>
   </div>
 </footer>

@@ -39,9 +39,20 @@
       <p class="eyebrow">Contact</p>
       <p class="mt-5">{{ site_settings.address|default:"Cairo, Egypt" }}</p>
       <p><a class="underline underline-offset-4" href="mailto:esmaelbakr28@gmail.com">esmaelbakr28@gmail.com</a></p>
-      {% if site_settings.phone %}<p>{{ site_settings.phone }}</p>{% endif %}
-      {% if site_settings.whatsapp %}
-        <p><a href="https://wa.me/{{ site_settings.whatsapp|cut:'+'|cut:' ' }}">WhatsApp</a></p>
+      {% if site_settings.phone %}
+        <p><a href="{{ site_settings.tel_href }}">{{ site_settings.phone }}</a></p>
+      {% endif %}
+      {% if site_settings.whatsapp_href %}
+        <p><a href="{{ site_settings.whatsapp_href }}">WhatsApp</a></p>
+      {% endif %}
+      {% if site_settings.facebook %}
+        <p><a href="{{ site_settings.facebook }}" target="_blank" rel="noopener">Facebook</a></p>
+      {% endif %}
+      {% if site_settings.instagram %}
+        <p><a href="{{ site_settings.instagram }}" target="_blank" rel="noopener">Instagram</a></p>
+      {% endif %}
+      {% if site_settings.youtube %}
+        <p><a href="{{ site_settings.youtube }}" target="_blank" rel="noopener">YouTube</a></p>
       {% endif %}
       <a href="{% url 'gallery' %}" class="btn-line mt-6">See the gallery</a>
     </aside>

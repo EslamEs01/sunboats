@@ -8,7 +8,7 @@ class SettingsAdmin(admin.ModelAdmin):
     fieldsets = (
         ("الهوية", {"fields": ("site_name", "tagline", "description", "logo", "hero_image")}),
         ("التواصل", {"fields": ("email", "phone", "whatsapp", "address")}),
-        ("وسائل التواصل", {"fields": ("facebook", "instagram")}),
+        ("وسائل التواصل", {"fields": ("facebook", "instagram", "youtube")}),
     )
 
     def has_add_permission(self, request):

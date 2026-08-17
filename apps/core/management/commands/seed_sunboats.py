@@ -117,11 +117,12 @@ class Command(BaseCommand):
             "alongside visits to Giza, the Grand Egyptian Museum, the Nile, and Minya."
         )
         settings.email = "esmaelbakr28@gmail.com"
-        settings.phone = "+20 100 000 0000"
-        settings.whatsapp = "+201000000000"
+        settings.phone = "010 04189135"
+        settings.whatsapp = "010 04189135"
         settings.address = "Cairo, Egypt"
-        settings.facebook = "https://www.facebook.com/"
-        settings.instagram = "https://www.instagram.com/"
+        settings.facebook = "https://www.facebook.com/Esmaelbakr28/"
+        settings.instagram = "https://www.instagram.com/sun_boats_exhibition/"
+        settings.youtube = "https://www.youtube.com/@sunboatsexhibitions4049"
         if not settings.logo:
             settings.logo.save("logo.jpg", jpeg_bytes(logo), save=False)
         if not settings.hero_image:

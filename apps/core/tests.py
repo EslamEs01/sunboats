@@ -211,6 +211,21 @@ class SeededSiteTests(TestCase):
         admin = self.client.get(reverse("admin:index"), follow=True)
         self.assertEqual(admin.status_code, 200)
 
+    def test_contact_channels_on_every_page(self):
+        settings = Settings.objects.get(pk=1)
+        self.assertEqual(settings.phone, "010 04189135")
+        self.assertEqual(settings.tel_href, "tel:+201004189135")
+        self.assertEqual(settings.whatsapp_href, "https://wa.me/201004189135")
+        home = self._page("home")
+        self.assertContains(home, "010 04189135")
+        self.assertContains(home, "tel:+201004189135")
+        self.assertContains(home, "https://wa.me/201004189135")
+        self.assertContains(home, "facebook.com/Esmaelbakr28")
+        self.assertContains(home, "instagram.com/sun_boats_exhibition")
+        self.assertContains(home, "youtube.com/@sunboatsexhibitions4049")
+        self.assertContains(home, 'aria-label="Call Sun Boats"')
+        self.assertContains(home, 'aria-label="WhatsApp Sun Boats"')
+
     def test_admin_interface_is_arabic(self):
         login = self.client.get(reverse("admin:login"))
         self.assertEqual(login.status_code, 200)
