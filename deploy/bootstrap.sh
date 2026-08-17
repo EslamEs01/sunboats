@@ -21,8 +21,8 @@ if [ ! -f "$APP/.env" ]; then
   cat > "$APP/.env" <<EOF
 SECRET_KEY=$SECRET
 DEBUG=0
-ALLOWED_HOSTS=.sunboats.online,159.223.182.218,127.0.0.1
-CSRF_TRUSTED_ORIGINS=https://sunboats.online,https://www.sunboats.online,http://159.223.182.218
+ALLOWED_HOSTS=.sunboats.online
+CSRF_TRUSTED_ORIGINS=https://sunboats.online,https://www.sunboats.online
 POSTGRES_DB=sunboats
 POSTGRES_USER=sunboats
 POSTGRES_PASSWORD=$PGPASS

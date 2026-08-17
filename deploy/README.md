@@ -34,15 +34,15 @@ Sign in at `https://sunboats.online/admin/`
 
 ## DNS
 
-Apex and www should point to this server:
+The public site is the domain only. Do not add the VPS IP to `ALLOWED_HOSTS`.
 
 ```
-sunboats.online      A   <this-server-ip>
-www.sunboats.online  A   <this-server-ip>
+sunboats.online      A   159.223.182.218
+www.sunboats.online  A   159.223.182.218
 ```
 
 Then:
 
 ```bash
-certbot --nginx -d sunboats.online -d www.sunboats.online
+certbot --nginx -d sunboats.online -d www.sunboats.online --redirect
 ```
