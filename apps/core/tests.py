@@ -232,6 +232,8 @@ class SeededSiteTests(TestCase):
         self.assertContains(login, "مراكب الشمس")
         self.assertContains(login, "اسم المستخدم")
         self.assertContains(login, "كلمة المرور")
+        self.assertContains(login, 'dir="rtl"')
+        self.assertContains(login, "admin-ar.css")
         home = self._page("home")
         self.assertContains(home, "Submit your work")
         self.assertNotContains(home, "اسم المستخدم")

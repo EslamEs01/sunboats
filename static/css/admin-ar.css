@@ -1,25 +1,276 @@
-/* Jazzmin Arabic — self-hosted Cairo, no Google CDN */
+/* Jazzmin Arabic RTL — Cairo + Sun Boats palette */
+
 @font-face {
   font-family: "Cairo";
   src: url("../fonts/cairo.woff2") format("woff2");
-  font-weight: 400 600;
+  font-weight: 400 700;
   font-style: normal;
   font-display: swap;
 }
 
-body,
-.wrapper,
-.main-header,
-.main-sidebar,
-.content-wrapper,
-.login-page,
-.login-box {
+html[dir="rtl"],
+html[dir="rtl"] body,
+html[dir="rtl"] .wrapper,
+html[dir="rtl"] .main-header,
+html[dir="rtl"] .main-sidebar,
+html[dir="rtl"] .content-wrapper,
+html[dir="rtl"] .login-page,
+html[dir="rtl"] .login-box,
+html[dir="rtl"] .form-control,
+html[dir="rtl"] .btn,
+html[dir="rtl"] .nav-sidebar .nav-link p,
+html[dir="rtl"] .content-header h1,
+html[dir="rtl"] .brand-text {
   font-family: "Cairo", "Segoe UI", Tahoma, sans-serif !important;
 }
 
-.login-logo a,
-.brand-link,
-.nav-sidebar .nav-link p,
-.content-header h1 {
-  font-family: "Cairo", "Segoe UI", Tahoma, sans-serif !important;
+html[dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
+  background: #f3eee4;
+}
+
+/* ---------- Login ---------- */
+html[dir="rtl"] .jazzmin-login-page,
+html[dir="rtl"] body.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #161310;
+}
+
+html[dir="rtl"] .login-box {
+  width: 100%;
+  max-width: 26rem;
+  margin: 1.5rem;
+}
+
+html[dir="rtl"] .login-logo picture,
+html[dir="rtl"] .login-logo img {
+  display: none !important;
+}
+
+html[dir="rtl"] .login-logo,
+html[dir="rtl"] .login-logo h1 {
+  margin-bottom: 1rem;
+  color: #f3eee4;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+html[dir="rtl"] .login-logo h1::after {
+  content: "مراكب الشمس";
+}
+
+html[dir="rtl"] .login-box .card {
+  border: 0;
+  border-radius: 0.4rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+}
+
+html[dir="rtl"] .login-box-msg {
+  text-align: center;
+  line-height: 1.8;
+  color: #2a241c;
+}
+
+html[dir="rtl"] .login-box .input-group {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .login-box .form-control {
+  text-align: right;
+  direction: rtl;
+  border-radius: 0.25rem 0 0 0.25rem !important;
+}
+
+html[dir="rtl"] .login-box .input-group-append,
+html[dir="rtl"] .login-box .input-group-text {
+  margin: 0;
+  border-radius: 0 0.25rem 0.25rem 0 !important;
+}
+
+html[dir="rtl"] .login-box .btn-primary {
+  background: #b4532a;
+  border-color: #b4532a;
+  font-size: 1.05rem;
+}
+
+html[dir="rtl"] .login-box .btn-primary:hover {
+  background: #9a4522;
+  border-color: #9a4522;
+}
+
+/* ---------- Sidebar on the right ---------- */
+html[dir="rtl"] .main-sidebar,
+html[dir="rtl"] .main-sidebar::before {
+  left: auto !important;
+  right: 0 !important;
+}
+
+html[dir="rtl"] .content-wrapper,
+html[dir="rtl"] .main-header,
+html[dir="rtl"] .main-footer {
+  margin-left: 0 !important;
+  margin-right: 250px !important;
+}
+
+html[dir="rtl"].sidebar-mini.sidebar-collapse .content-wrapper,
+html[dir="rtl"].sidebar-mini.sidebar-collapse .main-header,
+html[dir="rtl"].sidebar-mini.sidebar-collapse .main-footer {
+  margin-right: 4.6rem !important;
+}
+
+html[dir="rtl"] .brand-link {
+  text-align: right;
+}
+
+html[dir="rtl"] .brand-link .brand-image,
+html[dir="rtl"] .brand-link img {
+  display: none !important;
+}
+
+html[dir="rtl"] .nav-sidebar .nav-link {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+html[dir="rtl"] .nav-sidebar .nav-icon {
+  margin-left: 0.55rem;
+  margin-right: 0;
+}
+
+html[dir="rtl"] .nav-sidebar .nav-link p {
+  margin: 0;
+}
+
+html[dir="rtl"] .nav-header {
+  text-align: right;
+}
+
+@media (max-width: 991.98px) {
+  html[dir="rtl"] .content-wrapper,
+  html[dir="rtl"] .main-header,
+  html[dir="rtl"] .main-footer {
+    margin-right: 0 !important;
+  }
+
+  html[dir="rtl"] .main-sidebar {
+    right: -250px !important;
+  }
+
+  html[dir="rtl"].sidebar-open .main-sidebar {
+    right: 0 !important;
+  }
+}
+
+/* ---------- Header / breadcrumbs / actions ---------- */
+html[dir="rtl"] .main-header .navbar-nav {
+  flex-direction: row;
+}
+
+html[dir="rtl"] .navbar-nav.ml-auto {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+html[dir="rtl"] .content-header h1 {
+  text-align: right;
+}
+
+html[dir="rtl"] .breadcrumb {
+  float: left !important;
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .object-tools {
+  float: left !important;
+}
+
+html[dir="rtl"] .float-sm-right,
+html[dir="rtl"] .float-right {
+  float: left !important;
+}
+
+html[dir="rtl"] .float-left {
+  float: right !important;
+}
+
+html[dir="rtl"] .ml-auto {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+html[dir="rtl"] .mr-auto {
+  margin-right: 0 !important;
+  margin-left: auto !important;
+}
+
+html[dir="rtl"] .text-left {
+  text-align: right !important;
+}
+
+html[dir="rtl"] .dropdown-menu {
+  text-align: right;
+}
+
+/* ---------- Forms & tables ---------- */
+html[dir="rtl"] input,
+html[dir="rtl"] select,
+html[dir="rtl"] textarea,
+html[dir="rtl"] .form-control,
+html[dir="rtl"] .select2-container {
+  text-align: right;
+  direction: rtl;
+}
+
+html[dir="rtl"] .form-group,
+html[dir="rtl"] .form-row,
+html[dir="rtl"] label {
+  text-align: right;
+}
+
+html[dir="rtl"] .table th,
+html[dir="rtl"] .table td {
+  text-align: right;
+}
+
+html[dir="rtl"] .card-header {
+  text-align: right;
+}
+
+html[dir="rtl"] .btn-group {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .pagination {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .alert {
+  text-align: right;
+}
+
+html[dir="rtl"] .submit-row {
+  text-align: left;
+}
+
+html[dir="rtl"] #jazzy-actions,
+html[dir="rtl"] .jazzy-actions {
+  text-align: left;
+}
+
+html[dir="rtl"] .sidebar-dark-secondary {
+  background: #161310;
+}
+
+html[dir="rtl"] .brand-link {
+  background: #161310 !important;
+  color: #f3eee4 !important;
+  border-bottom: 1px solid rgba(243, 238, 228, 0.08);
 }
