@@ -1,10 +1,16 @@
-<header class="sticky top-0 z-40 border-b border-ink/10 bg-paper/92 backdrop-blur-sm">
-  <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-8 gap-y-3 px-5 py-3.5">
-    <a href="{% url 'home' %}" class="leading-none">
-      <span class="block font-display text-[1.35rem] tracking-tight">{{ site_settings.site_name|default:"Sun Boats" }}</span>
+<header class="site-header sticky top-0 z-40 border-b border-ink/10 bg-paper/95 backdrop-blur-sm">
+  <div class="site-header-inner mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
+    <a href="{% url 'home' %}" class="min-w-0 leading-none">
+      <span class="block font-display text-xl tracking-tight sm:text-[1.35rem]">{{ site_settings.site_name|default:"Sun Boats" }}</span>
       <span class="font-arabic mt-0.5 block text-[11px] text-basalt/70" lang="ar" dir="rtl">معارض مراكب الشمس</span>
     </a>
-    <nav class="site-nav flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] uppercase tracking-[0.18em] text-basalt">
+    <input id="nav-open" class="nav-check" type="checkbox">
+    <label for="nav-open" class="nav-toggle" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <nav class="site-nav text-[12px] uppercase tracking-[0.16em] text-basalt">
       <a href="{% url 'home' %}" {% if request.resolver_match and request.resolver_match.url_name == 'home' %}aria-current="page"{% endif %}>Home</a>
       <a href="{% url 'exhibitions' %}" {% if request.resolver_match and request.resolver_match.url_name == 'exhibitions' or request.resolver_match and request.resolver_match.url_name == 'exhibition-detail' %}aria-current="page"{% endif %}>Exhibitions</a>
       <a href="{% url 'gallery' %}" {% if request.resolver_match and request.resolver_match.url_name == 'gallery' %}aria-current="page"{% endif %}>Gallery</a>

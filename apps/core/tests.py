@@ -208,6 +208,8 @@ class SeededSiteTests(TestCase):
         home = self._page("home")
         self.assertContains(home, reverse("gallery"))
         self.assertContains(home, ">Gallery<")
+        self.assertContains(home, 'id="nav-open"')
+        self.assertContains(home, "nav-toggle")
         admin = self.client.get(reverse("admin:index"), follow=True)
         self.assertEqual(admin.status_code, 200)
 

@@ -4,14 +4,14 @@
 
 {% block content %}
 <article>
-  <header class="relative min-h-[70svh] overflow-hidden">
+  <header class="relative min-h-[52svh] overflow-hidden sm:min-h-[70svh]">
     {% if exhibition.image %}
       <img src="{{ exhibition.image.url }}" alt="" class="absolute inset-0 h-full w-full object-cover">
     {% endif %}
     <div class="absolute inset-0 bg-gradient-to-t from-ink/75 to-ink/10"></div>
-    <div class="relative mx-auto flex min-h-[70svh] max-w-6xl flex-col justify-end px-5 pb-12 pt-24 text-paper">
+    <div class="relative mx-auto flex min-h-[52svh] max-w-6xl flex-col justify-end px-5 pb-10 pt-20 text-paper sm:min-h-[70svh] sm:pb-12 sm:pt-24">
       <p class="text-xs uppercase tracking-[0.18em] text-paper/80">{{ exhibition.location }}</p>
-      <h1 class="font-display mt-3 max-w-4xl text-4xl leading-[1.02] md:text-6xl">{{ exhibition.title }}</h1>
+      <h1 class="font-display mt-3 max-w-4xl text-3xl leading-[1.05] sm:text-4xl md:text-6xl">{{ exhibition.title }}</h1>
       <p class="mt-4 text-sm uppercase tracking-[0.14em] text-paper/80">
         {{ exhibition.start_date|date:"j F Y" }}{% if exhibition.end_date %} – {{ exhibition.end_date|date:"j F Y" }}{% endif %}
       </p>
