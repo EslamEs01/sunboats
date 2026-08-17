@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Gallery — Sun Boats{% endblock %}
+
+{% block content %}
+<section class="mx-auto max-w-6xl px-5 py-16">
+  <p class="eyebrow">Works</p>
+  <h1 class="font-display mt-3 text-5xl">Gallery</h1>
+  <p class="mt-4 max-w-xl text-base leading-relaxed">
+    Selected works from Sun Boats editions. Not a shop — a wall from the weeks in Egypt.
+  </p>
+  <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    {% for work in artworks %}
+      <figure class="frame">
+        <img src="{{ work.image.url }}" alt="{{ work.title }}" loading="lazy">
+        <figcaption>
+          {{ work.title }}
+          {% if work.artist %} — {{ work.artist.name }}{% endif %}
+          {% if work.exhibition %}<span class="block">{{ work.exhibition.title }}</span>{% endif %}
+        </figcaption>
+      </figure>
+    {% empty %}
+      <p>Works will appear here after an edition is documented.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

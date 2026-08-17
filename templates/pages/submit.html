@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Submit your work — Sun Boats{% endblock %}
+
+{% block content %}
+<section class="mx-auto grid max-w-6xl gap-16 px-5 py-16 lg:grid-cols-[1fr_1.1fr]">
+  <div>
+    <p class="eyebrow">Open call</p>
+    <h1 class="font-display mt-3 text-5xl leading-tight">Send a work to Egypt.</h1>
+    <p class="mt-5 max-w-md text-base leading-relaxed">
+      No account. One image, a title, and a few lines. We review every submission for a coming edition.
+    </p>
+    <p class="mt-6 text-sm">
+      Direct line:
+      <a class="underline underline-offset-4" href="mailto:esmaelbakr28@gmail.com">esmaelbakr28@gmail.com</a>
+    </p>
+    <ol class="mt-12 space-y-6">
+      <li>
+        <p class="font-display text-2xl">1. We receive it</p>
+        <p class="mt-1 text-sm leading-relaxed text-basalt/80">Your image and notes arrive as a pending request.</p>
+      </li>
+      <li>
+        <p class="font-display text-2xl">2. We review it</p>
+        <p class="mt-1 text-sm leading-relaxed text-basalt/80">The team looks at the work against the next edition, not against a shop.</p>
+      </li>
+      <li>
+        <p class="font-display text-2xl">3. We write back</p>
+        <p class="mt-1 text-sm leading-relaxed text-basalt/80">If selected, you hear from us with the next practical steps.</p>
+      </li>
+    </ol>
+  </div>
+
+  <form method="post" enctype="multipart/form-data" class="form-stack border border-ink/10 bg-limestone/30 p-6 sm:p-8">
+    {% csrf_token %}
+    {% for field in form %}
+      <label>
+        <span>{{ field.label }}</span>
+        {{ field }}
+        {% if field.errors %}<em>{{ field.errors|striptags }}</em>{% endif %}
+      </label>
+    {% endfor %}
+    <button type="submit" class="btn-accent w-full">Send the work</button>
+  </form>
+</section>
+{% endblock %}

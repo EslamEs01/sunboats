@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Exhibitions — Sun Boats{% endblock %}
+
+{% block content %}
+<section class="mx-auto max-w-6xl px-5 py-16">
+  <p class="eyebrow">Sun Boats</p>
+  <h1 class="font-display mt-3 text-5xl md:text-7xl">Editions</h1>
+  <p class="mt-4 max-w-xl text-base leading-relaxed">
+    Each edition is a week in Egypt: the hang, the plateau, the river. Upcoming first.
+  </p>
+
+  {% if upcoming %}
+    <h2 class="mt-16 font-display text-3xl">Upcoming</h2>
+    <div class="mt-8 grid gap-10 md:grid-cols-2">
+      {% for item in upcoming %}
+        {% include "partials/exhibition_card.html" with item=item %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if past %}
+    <h2 class="mt-20 font-display text-3xl">Past</h2>
+    <div class="mt-8 grid gap-10 md:grid-cols-2">
+      {% for item in past %}
+        {% include "partials/exhibition_card.html" with item=item %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

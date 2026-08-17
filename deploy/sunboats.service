@@ -1,0 +1,16 @@
+[Unit]
+Description=Sun Boats gunicorn
+After=network.target postgresql.service
+
+[Service]
+User=sunboats
+Group=sunboats
+WorkingDirectory=/var/www/sunboats
+Environment=DJANGO_SETTINGS_MODULE=config.settings.prod
+EnvironmentFile=/var/www/sunboats/.env
+ExecStart=/var/www/sunboats/.venv/bin/gunicorn config.wsgi:application --bind 127.0.0.1:8000 --workers 3 --timeout 60
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

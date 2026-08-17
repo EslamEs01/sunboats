@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}About — Sun Boats{% endblock %}
+
+{% block content %}
+<article class="mx-auto max-w-6xl px-5 py-16">
+  <p class="eyebrow">The company</p>
+  <h1 class="font-display mt-3 max-w-3xl text-5xl leading-tight md:text-6xl">
+    Sun Boats International Exhibitions
+  </h1>
+  <p class="font-arabic mt-4 text-lg" lang="ar" dir="rtl">معارض مراكب الشمس</p>
+
+  <div class="mt-12 grid gap-16 lg:grid-cols-[1.3fr_0.7fr]">
+    <div class="space-y-8 text-base leading-8">
+      <p>
+        Sun Boats organises international art exhibitions in Egypt every few months.
+        Artists from Egypt and abroad send a painting or a work. The team reviews it.
+        Selected pieces are exhibited during the edition week.
+      </p>
+      <p>
+        During that same week we hold happenings around the country — the Giza pyramids,
+        the Grand Egyptian Museum, the Nile, Minya, Cairo venues. They are part of the
+        exhibition, not a second website about events.
+      </p>
+      <h2 class="font-display text-3xl">Why the name</h2>
+      <p>
+        The solar boats of ancient Egypt were built to cross from one horizon to the next.
+        Sun Boats takes that crossing as its name. Each edition is a passage: a work leaves
+        a studio and meets Egypt at the scale of its light.
+      </p>
+      <h2 class="font-display text-3xl">Founder</h2>
+      <p>
+        Ismail Bakr (Esmael Bakr) founded Sun Boats so artists could work in Egypt
+        without turning the country into a postcard. The company is still run as a
+        small, direct organisation: one inbox, one review, one week at a time.
+      </p>
+    </div>
+    <aside class="border border-ink/10 bg-limestone/40 p-6 text-sm leading-7 h-fit">
+      <p class="eyebrow">Contact</p>
+      <p class="mt-4">{{ site_settings.address|default:"Cairo, Egypt" }}</p>
+      <p><a class="underline underline-offset-4" href="mailto:esmaelbakr28@gmail.com">esmaelbakr28@gmail.com</a></p>
+      {% if site_settings.phone %}<p>{{ site_settings.phone }}</p>{% endif %}
+      {% if site_settings.whatsapp %}
+        <p><a href="https://wa.me/{{ site_settings.whatsapp|cut:'+'|cut:' ' }}">WhatsApp</a></p>
+      {% endif %}
+    </aside>
+  </div>
+
+  <section class="mt-20 grid gap-12 lg:grid-cols-2">
+    <div>
+      <h2 class="font-display text-3xl">Write to us</h2>
+      <p class="mt-3 max-w-md text-sm leading-relaxed">
+        For press, venues, or a question that is not a submission. To send a work, use
+        <a class="underline underline-offset-4" href="{% url 'submit' %}">Submit your work</a>.
+      </p>
+    </div>
+    <form method="post" class="form-stack border border-ink/10 p-6">
+      {% csrf_token %}
+      {% for field in form %}
+        <label>
+          <span>{{ field.label }}</span>
+          {{ field }}
+          {% if field.errors %}<em>{{ field.errors|striptags }}</em>{% endif %}
+        </label>
+      {% endfor %}
+      <button type="submit" class="btn-accent">Send message</button>
+    </form>
+  </section>
+</article>
+{% endblock %}

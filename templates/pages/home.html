@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}Sun Boats — Art, in the presence of the pyramids{% endblock %}
+
+{% block content %}
+<section class="relative min-h-[100svh] overflow-hidden">
+  {% if site_settings.hero_image %}
+    <img src="{{ site_settings.hero_image.url }}" alt="" class="absolute inset-0 h-full w-full object-cover" width="1920" height="1080">
+  {% endif %}
+  <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/25 to-ink/10"></div>
+  <div class="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 text-paper">
+    <p class="font-arabic text-sm" lang="ar" dir="rtl">معارض مراكب الشمس</p>
+    <h1 class="font-display mt-4 max-w-4xl text-5xl leading-[0.95] sm:text-7xl lg:text-8xl">
+      Art, in the presence of the pyramids.
+    </h1>
+    <p class="mt-6 max-w-xl text-base leading-relaxed text-paper/85 sm:text-lg">
+      International exhibitions every season. Artists from Egypt and abroad send a work.
+      We review it, and we show selected pieces in Egypt.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="{% url 'submit' %}" class="btn-accent">Submit your work</a>
+      <a href="{% if featured %}{{ featured.get_absolute_url }}{% else %}{% url 'exhibitions' %}{% endif %}" class="btn-ghost">See the next edition</a>
+    </div>
+  </div>
+</section>
+
+{% if featured %}
+<section class="mx-auto grid max-w-6xl items-start gap-10 px-5 py-20 md:grid-cols-[140px_1fr_1fr]">
+  <p class="font-display text-4xl leading-none tracking-tight md:sticky md:top-24 md:[writing-mode:vertical-rl] md:rotate-180">
+    {{ featured.start_date|date:"M Y" }}
+  </p>
+  <div>
+    <p class="eyebrow">Next edition</p>
+    <h2 class="font-display mt-3 text-4xl leading-tight">{{ featured.title }}</h2>
+    <p class="mt-4 text-sm uppercase tracking-[0.14em] text-basalt/70">
+      {{ featured.start_date|date:"j F Y" }}{% if featured.end_date %} – {{ featured.end_date|date:"j F Y" }}{% endif %}
+      · {{ featured.location }}
+    </p>
+    <p class="mt-6 max-w-md text-base leading-relaxed">{{ featured.description|truncatewords:48 }}</p>
+    <a href="{{ featured.get_absolute_url }}" class="mt-6 inline-block text-sm uppercase tracking-[0.16em] underline decoration-terracotta/70 underline-offset-4">The full edition</a>
+  </div>
+  {% if featured.image %}
+    <figure class="frame">
+      <img src="{{ featured.image.url }}" alt="{{ featured.title }}" class="h-full w-full object-cover" loading="lazy">
+      <figcaption>{{ featured.location }}</figcaption>
+    </figure>
+  {% endif %}
+</section>
+{% endif %}
+
+<section class="border-y border-ink/10 bg-limestone/50">
+  <div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-3">
+    <div>
+      <p class="font-display text-3xl">Exhibitions every season.</p>
+      <p class="mt-3 text-sm leading-relaxed text-basalt/80">A new edition every few months. Not a permanent museum — a gathering that arrives, works, and is documented.</p>
+    </div>
+    <div>
+      <p class="font-display text-3xl">An open call.</p>
+      <p class="mt-3 text-sm leading-relaxed text-basalt/80">Send a painting or a work. Sun Boats reviews every submission and invites selected pieces into the edition.</p>
+    </div>
+    <div>
+      <p class="font-display text-3xl">A week of Egypt.</p>
+      <p class="mt-3 text-sm leading-relaxed text-basalt/80">The same week holds the hang and the country: pyramids, Nile, Minya, Cairo halls. They belong to the exhibition.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mx-auto max-w-6xl px-5 py-20">
+  <p class="eyebrow">How it works</p>
+  <ol class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+    <li>
+      <span class="font-display text-5xl text-terracotta">01</span>
+      <h3 class="mt-3 font-display text-2xl">Send a work</h3>
+      <p class="mt-2 text-sm leading-relaxed">An image, a title, a few lines. No artist account.</p>
+    </li>
+    <li>
+      <span class="font-display text-5xl text-terracotta">02</span>
+      <h3 class="mt-3 font-display text-2xl">We review</h3>
+      <p class="mt-2 text-sm leading-relaxed">The team reads the submission against the coming edition.</p>
+    </li>
+    <li>
+      <span class="font-display text-5xl text-terracotta">03</span>
+      <h3 class="mt-3 font-display text-2xl">We exhibit</h3>
+      <p class="mt-2 text-sm leading-relaxed">Selected works hang during the edition week in Egypt.</p>
+    </li>
+    <li>
+      <span class="font-display text-5xl text-terracotta">04</span>
+      <h3 class="mt-3 font-display text-2xl">Documentation</h3>
+      <p class="mt-2 text-sm leading-relaxed">The week is photographed and kept with the edition.</p>
+    </li>
+  </ol>
+</section>
+
+<section class="px-5">
+  <div class="mx-auto flex max-w-6xl flex-wrap items-baseline justify-between gap-4 border-y border-ink/10 py-6 text-sm uppercase tracking-[0.2em]">
+    <span>Giza</span>
+    <span>GEM</span>
+    <span>Nile</span>
+    <span>Minya</span>
+  </div>
+</section>
+
+{% if featured_works %}
+<section class="mx-auto max-w-6xl px-5 py-20">
+  <p class="eyebrow">From the edition</p>
+  <h2 class="font-display mt-3 text-4xl">Selected works</h2>
+  <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    {% for work in featured_works %}
+      <figure class="frame">
+        <img src="{{ work.image.url }}" alt="{{ work.title }}" loading="lazy">
+        <figcaption>{{ work.title }} — {{ work.artist.name }}</figcaption>
+      </figure>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="mx-auto max-w-3xl px-5 py-12 text-center">
+  <p class="font-display text-3xl leading-snug">
+    Founded by Ismail Bakr, Sun Boats exists so a painting can meet Egypt at the scale of its light.
+  </p>
+  <a href="{% url 'about' %}" class="mt-6 inline-block text-sm uppercase tracking-[0.16em] underline underline-offset-4">About the company</a>
+</section>
+
+<section class="mx-auto max-w-6xl px-5 pb-20">
+  <div class="bg-ink px-8 py-16 text-paper md:px-16">
+    <h2 class="font-display text-4xl md:text-6xl">Bring a work to Egypt.</h2>
+    <p class="mt-4 max-w-lg text-paper/80">The next edition is assembled from submissions. Send yours.</p>
+    <a href="{% url 'submit' %}" class="btn-accent mt-8 inline-block">Submit your work</a>
+  </div>
+</section>
+{% endblock %}
